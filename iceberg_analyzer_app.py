@@ -11,6 +11,8 @@ except:
 st.title("🧊 Iceberg Readiness Audit")
 st.caption("Analyze your Snowflake database for Apache Iceberg compatibility")
 
+
+
 @st.cache_data(ttl=300)
 def get_databases():
     result = session.sql("SHOW DATABASES").collect()
@@ -91,7 +93,7 @@ def generate_summary_paragraph(_session, database_name, results):
     
     prompt = f"""Summarize the Iceberg migration readiness assessment for the {database_name} database. 
 Do not escape underscores or use backslashes in table names.
-Write 2-3 paragraphs covering:
+Write a brief section on each of these.  Be specific.
 1. Overall readiness (how many tables are suitable vs not)
 2. Common blockers or issues found across tables
 3. Key recommendations for the migration
